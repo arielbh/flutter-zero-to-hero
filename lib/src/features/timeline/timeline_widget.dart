@@ -1,6 +1,7 @@
 import 'package:alt_twitter/src/common/author.dart';
 import 'package:alt_twitter/src/common/message.dart';
 import 'package:alt_twitter/src/features/timeline/message_in_timeline_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TimelineWidget extends StatelessWidget {
@@ -25,13 +26,19 @@ class TimelineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: ListView.builder(
-        itemCount: _messages.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.only(bottom: 12.0),
-          child: MessageInTimelineWidget(message: _messages[index]),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade100),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: ListView.builder(
+          itemCount: _messages.length,
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.only(bottom: 12.0),
+            child: MessageInTimelineWidget(message: _messages[index]),
+          ),
         ),
       ),
     );

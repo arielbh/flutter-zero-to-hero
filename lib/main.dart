@@ -4,6 +4,8 @@ import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/menu.dart';
 import 'package:flutter/material.dart';
 
+import 'src/common/author.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Layout(title: 'Flutter Demo Home Page'),
+      home: const Layout(title: 'ALT.T*itter'),
     );
   }
 }
@@ -43,12 +45,17 @@ class Layout extends StatelessWidget {
                 child: Menu(),
               )),
               Expanded(
-                  child: Column(
-                children: [
-                  Compose(),
-                  const SizedBox(height: 12.0),
-                  Expanded(child: TimelineWidget()),
-                ],
+                  child: Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Column(
+                  children: [
+                    Compose(
+                      author: Author("3", "arielbh", "Ariel Ben Horesh", "images/ariel.png"),
+                    ),
+                    const SizedBox(height: 12.0),
+                    Expanded(child: TimelineWidget()),
+                  ],
+                ),
               )),
               Expanded(
                   child: Padding(
