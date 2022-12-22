@@ -12,9 +12,12 @@ class _ComposeState extends State<Compose> {
   final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      decoration: const InputDecoration.collapsed(hintText: 'What' 's happening?'),
+    return Container(
+      height: 200,
+      child: TextField(
+        controller: _controller,
+        decoration: const InputDecoration.collapsed(hintText: 'What' 's happening?'),
+      ),
     );
   }
 }

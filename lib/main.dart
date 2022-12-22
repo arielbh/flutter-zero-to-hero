@@ -1,4 +1,5 @@
 import 'package:alt_twitter/src/features/compose/compose.dart';
+import 'package:alt_twitter/src/features/timeline/timeline_widget.dart';
 import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/menu.dart';
 import 'package:flutter/material.dart';
@@ -34,13 +35,26 @@ class Layout extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(child: Menu()),
-              Expanded(child: Compose()),
-              Expanded(child: Trends()),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Menu(),
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  Compose(),
+                  const SizedBox(height: 12.0),
+                  Expanded(child: TimelineWidget()),
+                ],
+              )),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: Trends(),
+              )),
             ],
           ),
         ));

@@ -17,24 +17,30 @@ class Trends extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text("Trends for you", style: Theme.of(context).textTheme.headline6),
-        Expanded(
-          child: ListView.builder(
-            itemCount: _trends.length,
-            itemBuilder: (context, index) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("${_trends[index].category ?? ""} Trending"),
-                Text(_trends[index].title, style: Theme.of(context).textTheme.headline5),
-                Text("${_formatNumber(_trends[index].numberOfMessages)} Messages"),
-              ],
-            ),
-          ),
-        )
-      ],
+    return Container(
+      color: Colors.grey.shade200,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Trends for you", style: Theme.of(context).textTheme.headline6),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _trends.length,
+                itemBuilder: (context, index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${_trends[index].category ?? ""} Trending"),
+                    Text(_trends[index].title, style: Theme.of(context).textTheme.headline5),
+                    Text("${_formatNumber(_trends[index].numberOfMessages)} Messages"),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
