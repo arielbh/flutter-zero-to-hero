@@ -1,12 +1,21 @@
+import 'package:alt_twitter/src/common/message.dart';
 import 'package:alt_twitter/src/features/compose/compose.dart';
 import 'package:alt_twitter/src/features/timeline/timeline_widget.dart';
 import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/menu.dart';
+import 'package:alt_twitter/src/services/message_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import 'src/common/author.dart';
 
+final locator = GetIt.instance;
+
 void main() {
+  final author = Author("3", "arielbh", "Ariel Ben Horesh", "images/ariel.png");
+  locator.registerLazySingleton(() => MessageService(loggedAuthor: author));
+  locator.registerSingleton(author);
   runApp(const MyApp());
 }
 
@@ -50,10 +59,14 @@ class Layout extends StatelessWidget {
                 child: Column(
                   children: [
                     Compose(
-                      author: Author("3", "arielbh", "Ariel Ben Horesh", "images/ariel.png"),
+                      author: locator<Author>(),
                     ),
                     const SizedBox(height: 12.0),
-                    Expanded(child: TimelineWidget()),
+                    Expanded(
+                        child: BlocProvider<MessageService>(
+                      create: (context) => locator<MessageService>(),
+                      child: TimelineWidget(),
+                    )),
                   ],
                 ),
               )),

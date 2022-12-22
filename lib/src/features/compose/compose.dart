@@ -1,4 +1,7 @@
+import 'package:alt_twitter/main.dart';
 import 'package:alt_twitter/src/common/author.dart';
+import 'package:alt_twitter/src/common/message.dart';
+import 'package:alt_twitter/src/services/message_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -40,7 +43,9 @@ class _ComposeState extends State<Compose> {
                       decoration: const InputDecoration.collapsed(hintText: 'What' 's happening?'),
                     ),
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text("Send")),
+                  ElevatedButton(onPressed: () {
+                    locator<MessageService>().send(_controller.text);
+                  }, child: Text("Send")),
                 ],
               ),
             ),
