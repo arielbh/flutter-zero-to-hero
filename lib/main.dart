@@ -1,6 +1,7 @@
 import 'package:alt_twitter/src/common/message.dart';
 import 'package:alt_twitter/src/features/compose/compose.dart';
 import 'package:alt_twitter/src/features/timeline/timeline_widget.dart';
+import 'package:alt_twitter/src/features/trends/trend_service.dart';
 import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/menu.dart';
 import 'package:alt_twitter/src/services/message_service.dart';
@@ -16,6 +17,8 @@ void main() {
   final author = Author("3", "arielbh", "Ariel Ben Horesh", "images/ariel.png");
   locator.registerLazySingleton(() => MessageService(loggedAuthor: author));
   locator.registerSingleton(author);
+  locator.registerLazySingleton(() => TrendService()..start());
+
   runApp(const MyApp());
 }
 
@@ -65,7 +68,7 @@ class Layout extends StatelessWidget {
                     Expanded(
                         child: BlocProvider<MessageService>(
                       create: (context) => locator<MessageService>(),
-                      child: TimelineWidget(),
+                      child: const TimelineWidget(),
                     )),
                   ],
                 ),
@@ -73,7 +76,10 @@ class Layout extends StatelessWidget {
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.only(right: 20.0),
-                child: Trends(),
+                child: BlocProvider<TrendService>(
+                  create: (context) => locator<TrendService>(),
+                  child: const Trends(),
+                ),
               )),
             ],
           ),
