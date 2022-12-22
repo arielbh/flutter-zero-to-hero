@@ -1,3 +1,5 @@
+import 'package:alt_twitter/src/features/compose/compose.dart';
+import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/menu.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +31,18 @@ class Layout extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: Menu());
-    //body: Row(children: [Menu()]));
+        body: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Menu()),
+              Expanded(child: Compose()),
+              Expanded(child: Trends()),
+            ],
+          ),
+        ));
   }
 }
