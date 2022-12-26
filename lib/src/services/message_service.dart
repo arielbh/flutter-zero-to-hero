@@ -25,6 +25,6 @@ class MessageService extends Cubit<List<Message>> {
         ]);
 
   void send(String text) {
-    emit([Message(text, 0, DateTime.now(), _loggedAuthor), ...state]);
+    emit([Message(text, 0, DateTime.now(), _loggedAuthor)]);
   }
 }
