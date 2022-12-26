@@ -1,3 +1,4 @@
+import 'package:alt_twitter/src/common/custom_colors.dart';
 import 'package:alt_twitter/src/features/trends/trend_service.dart';
 import 'package:alt_twitter/src/features/trends/trends.dart';
 import 'package:alt_twitter/src/home_screen.dart';
@@ -28,9 +29,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.light().copyWith(
+        extensions: [
+          CustomColors.light,
+        ],
       ),
+      darkTheme: ThemeData.dark().copyWith(
+        extensions: [
+          CustomColors.dark,
+        ],
+      ),
+      themeMode: ThemeMode.system,
       home: const Layout(title: 'ALT.T*itter', child: HomeScreen()),
     );
   }

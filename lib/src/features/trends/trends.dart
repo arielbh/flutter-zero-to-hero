@@ -13,7 +13,6 @@ class Trends extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade200,
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: Column(
@@ -30,9 +29,10 @@ class Trends extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("${state[index].category ?? ""} Trending"),
+                          Text("${state[index].category ?? ""} Trending", style: Theme.of(context).textTheme.bodyText1),
                           Text(state[index].title, style: Theme.of(context).textTheme.headline5),
-                          Text("${_formatNumber(state[index].numberOfMessages)} Messages"),
+                          Text("${_formatNumber(state[index].numberOfMessages)} Messages",
+                              style: Theme.of(context).textTheme.bodyText1),
                         ],
                       ),
                     ),
